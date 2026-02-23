@@ -807,17 +807,25 @@ const phases = [
       {
         id: "ops.0",
         title: "Missive integration (webhook-driven)",
-        status: "done",
+        status: "in-progress",
         description:
-          "Event-driven webhook on port 8099 via Tailscale Funnel. Queue processor built. Cron every 5min on Sonnet. All backlogged mentions processed.",
-        completedDate: "2026-02-20",
+          "Event-driven webhook on port 8099 via Tailscale Funnel. Queue processor built. Cron every 5min. Fixed 23 Feb: stale cron ID + wrong model string caused silent failures. Cron ID now file-based source of truth.",
         subItems: [
           { text: "Webhook listener on port 8099 (Python, systemd)", done: true },
           { text: "Tailscale Funnel for HTTPS termination", done: true },
           { text: "Queue processor at /workspace/bin/missive-queue-processor", done: true },
-          { text: "Cron every 5min on Sonnet (--no-deliver)", done: true },
+          { text: "Cron every 5min (model: anthropic/claude-sonnet-4-5-20250929)", done: true },
           { text: "All 5 backlogged mentions processed and replied", done: true },
-          { text: "Fixed icon (username_icon needs URL, not emoji)", done: true },
+          { text: "Fixed stale cron ID + wrong model string (23 Feb)", done: true },
+          { text: "File-based cron ID at /etc/openclaw/cron-ids/missive-queue", done: true },
+          { text: "Add cron ID file to golden backup script", done: false },
+          { text: "Boot-time health check oneshot (systemd, alerts to Slack)", done: false },
+          { text: "Verify tailscale funnel persists across reboots", done: false },
+          { text: "Reconcile script (missive-reconcile.sh) — self-healing drift detection", done: false },
+          { text: "Webhook secret validation (X-Hook-Signature)", done: false },
+          { text: "Move queue from filesystem to SQLite", done: false, note: "Backlog" },
+          { text: "Retry/backoff for failed Missive API replies", done: false, note: "Backlog" },
+          { text: "Queue depth alerting (>0 pending for 15min → Slack)", done: false, note: "Backlog" },
         ],
       },
       {
@@ -987,6 +995,10 @@ const operationalRules = [
   "Sub-agents MUST work in isolated /sandbox/ subdirectories — NEVER give workspace root access. Incident 22 Feb destroyed entire workspace.",
   "Every new project must have a GitHub remote within 10 minutes of creation. No exceptions.",
   "Use Claude Code (not raw sub-agents) for existing codebase modifications — git branch safety.",
+  "Never delete a cron to change it — use 'openclaw cron edit <id>'. ID must remain stable. Cron ID files at /etc/openclaw/cron-ids/ are source of truth.",
+  "The correct Sonnet model string is anthropic/claude-sonnet-4-5-20250929. Not claude-sonnet-4-6. Not anthropic/claude-sonnet-4-6.",
+  "OpenClaw cron subcommands: add, edit, rm, run, runs, list, enable, disable, status. No 'logs'. No 'get'. 'run' takes ID not name.",
+  "Golden backup must include: cron ID files, webhook scripts, systemd service files, openclaw cron list output.",
 ];
 
 const repoStatus = [
