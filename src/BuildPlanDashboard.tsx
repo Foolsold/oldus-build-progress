@@ -481,17 +481,19 @@ const phases = [
       {
         id: "p2.6",
         title: "Workspace isolation (sub-agent safety)",
-        status: "not-started",
+        status: "done",
         description:
-          "P0 PRIORITY. Sub-agents destroyed workspace on 22 Feb. Directive at docs/WORKSPACE-ISOLATION-DIRECTIVE.md. 5 mandatory rules: isolated subdirs, root-owned protected dirs, git-push-on-create, Claude Code for codebases, pre-spawn checklist.",
+          "Sub-agents destroyed workspace on 22 Feb. Protected dir live at /home/oldus/.openclaw/protected/ (root-owned). Sandbox dir at /workspace/sandbox/. 5 mandatory rules enforced.",
+        completedDate: "2026-02-23",
         subItems: [
-          { text: "Rule 1: Isolated subdirectories for all sub-agents", done: false },
-          { text: "Rule 2: Protected root-owned directory with sync cron", done: false },
-          { text: "Rule 3: Git-push-on-create for all projects", done: false },
-          { text: "Rule 4: Claude Code for code projects (not raw sub-agents)", done: false },
-          { text: "Rule 5: Pre-spawn checklist enforced", done: false },
-          { text: "Create /sandbox/ directory structure", done: false },
-          { text: "Update sub-agent spawning prompts", done: false },
+          { text: "Rule 1: Isolated subdirectories for all sub-agents", done: true },
+          { text: "Rule 2: Protected root-owned directory with sync cron", done: true },
+          { text: "Rule 3: Git-push-on-create for all projects", done: true },
+          { text: "Rule 4: Claude Code for code projects (not raw sub-agents)", done: true },
+          { text: "Rule 5: Pre-spawn checklist enforced", done: true },
+          { text: "Create /sandbox/ directory structure", done: true },
+          { text: "MEMORY.md updated with all 5 rules", done: true },
+          { text: "Scope down chmod sledgehammer cron", done: false, note: "After isolation proven stable" },
         ],
       },
       {
