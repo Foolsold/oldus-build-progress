@@ -569,6 +569,69 @@ const phases = [
           { text: "Loop guard: hop count exceeded → drop", done: false },
         ],
       },
+      {
+        id: "p2.12",
+        title: "Sub-agent model override bug — FIXED",
+        status: "done",
+        description:
+          "sessions_spawn with model override silently fell back to Opus. Root cause: auth.json wrong permissions → gateway couldn't load model catalog → every override cleared. Fix: chown oldus:oldus + chmod 600.",
+        completedDate: "2026-02-23",
+        subItems: [
+          { text: "Traced code through 5 gateway source files", done: true },
+          { text: "Root cause: auth.json permissions (not config/code)", done: true },
+          { text: "Fix applied, Sonnet sub-agents confirmed working", done: true },
+        ],
+      },
+      {
+        id: "p2.13",
+        title: "Permission audit script (ExecStartPre)",
+        status: "done",
+        description:
+          "Checks ownership/permissions on all critical gateway files. --check and --fix modes. Runs before every gateway start via systemd ExecStartPre.",
+        completedDate: "2026-02-23",
+        subItems: [
+          { text: "bin/permission-audit.sh with auto-discovery", done: true },
+          { text: "systemd ExecStartPre override installed", done: true },
+        ],
+      },
+      {
+        id: "p2.14",
+        title: "Gateway health check (silent failure detection)",
+        status: "done",
+        description:
+          "Scans gateway logs for EACCES, catalog failures, model issues, auth failures. Telegram alert on failure. System cron every 6h.",
+        completedDate: "2026-02-23",
+        subItems: [
+          { text: "bin/gateway-health-check.sh — 7 failure patterns", done: true },
+          { text: "Telegram alerting + system cron installed", done: true },
+        ],
+      },
+      {
+        id: "p2.15",
+        title: "Sub-agent model verification template",
+        status: "done",
+        description:
+          "Mandatory preamble in every spawn verifying running model matches request. Mismatch → halt before doing work.",
+        completedDate: "2026-02-23",
+        subItems: [
+          { text: "Preamble template in MEMORY.md", done: true },
+          { text: "Integrated into spawn workflow", done: true },
+        ],
+      },
+      {
+        id: "p2.16",
+        title: "CI & Branch Protection",
+        status: "in-progress",
+        description:
+          "CI workflows live on all code repos. Branch protection blocked on GitHub Pro/Team plan.",
+        subItems: [
+          { text: "readymades-framing-engine: CI (test) — green ✅", done: true },
+          { text: "cardstar-v2: CI (lint/tsc) — green ✅", done: true },
+          { text: "agentbus: CI (validate) — already live ✅", done: true },
+          { text: "Branch protection on 4 repos (blocked: GitHub plan)", done: false },
+          { text: "Verification test: failing PR blocked", done: false },
+        ],
+      },
     ],
   },
   {
@@ -682,15 +745,36 @@ const phases = [
       {
         id: "p3.8",
         title: "Oldus In A Box — managed service",
+        status: "in-progress",
+        description:
+          "Managed autonomous AI agent for non-technical business owners. Dedicated infrastructure per client, pre-configured Son library, trust progression model. Product spec v0.2 written.",
+        subItems: [
+          { text: "Product spec v0.2 (scoping draft) in repo", done: true },
+          { text: "GitHub repo: Foolsold/oldus-in-a-box", done: true },
+          { text: "Golden config template finalised", done: false },
+          { text: "Automated deployment script", done: false },
+          { text: "Centralised monitoring across deployments", done: false },
+          { text: "Credential collection workflow", done: false },
+          { text: "Onboarding checklist + client docs", done: false },
+          { text: "Pricing validated against real costs", done: false },
+          { text: "Terms of service", done: false },
+          { text: "4 weeks stable internal running before first client", done: false },
+        ],
+      },
+      {
+        id: "p3.9",
+        title: "MyType V2 — Custom Typography Prints",
         status: "not-started",
         description:
-          "Productised version of the Oldus golden config for non-technical business owners. Provisioning script that takes bare Ubuntu → running agent in 20 mins. Revenue model: ~£1k+/month per client. Depends on P2.4 disaster recovery runbook.",
+          "Rebuild of mytype.co — custom typography prints (foil & matte posters, framed). V1 source recovered: Next.js 14 editor + Shopify Dawn theme. Parked until CardStar V2 ships. Lots of CardStar infra transfers across.",
         subItems: [
-          { text: "Provisioning script (depends on P2.4 runbook)", done: false },
-          { text: "Client-facing config wizard (tool stack questionnaire)", done: false },
-          { text: "Billing / Stripe integration", done: false },
-          { text: "Run paid pilots with 2-3 business owner friends", done: false },
-          { text: "Document which use cases prove most valuable", done: false },
+          { text: "V1 source downloaded and pushed to Foolsold/mytype-v2", done: true },
+          { text: "V1 architecture understood (12 fonts, gold/silver foil, 16 matte pairs, 5 sizes)", done: true },
+          { text: "Port canvas renderer from CardStar", done: false },
+          { text: "Port Shopify cart integration", done: false },
+          { text: "Port currency handling", done: false },
+          { text: "Adapt Cairo print service for typography", done: false },
+          { text: "Deploy to Vercel", done: false },
         ],
       },
     ],
