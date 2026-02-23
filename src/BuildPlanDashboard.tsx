@@ -512,21 +512,27 @@ const phases = [
       },
       {
         id: "p2.9",
-        title: "OpenClaw upgrade v2026.2.15 → v2026.2.21",
-        status: "not-started",
+        title: "OpenClaw upgrade v2026.2.15 → v2026.2.22-2",
+        status: "done",
         description:
-          "6 releases behind. Key gains: 1M context beta, /subagents spawn, subagent overflow fixes, per-channel model overrides, massive security hardening, Gemini 3.1, Slack streaming. No breaking changes listed. Upgrade plan: snapshot → npm install → restart → post-restart-check → test.",
+          "Upgraded from v2026.2.15 to v2026.2.22-2. Key gains: 1M context beta, /subagents spawn, subagent overflow fixes, per-channel model overrides, massive security hardening, Gemini 3.1, Slack streaming. Found and fixed second chmod sledgehammer in systemd ExecStartPre.",
+        completedDate: "2026-02-23",
         subItems: [
-          { text: "Golden backup + snapshot-state", done: false },
-          { text: "npm install -g openclaw@latest", done: false },
-          { text: "Restart gateway", done: false },
-          { text: "Run post-restart-check.py (19 checks)", done: false },
-          { text: "Test: Telegram delivery", done: false },
-          { text: "Test: sub-agent spawn", done: false },
-          { text: "Test: cron fire", done: false },
-          { text: "Test: sandbox write access", done: false },
+          { text: "Golden backup + snapshot-state", done: true },
+          { text: "npm install -g openclaw@latest", done: true },
+          { text: "Restart gateway", done: true },
+          { text: "Fixed second chmod sledgehammer in systemd ExecStartPre", done: true },
+          { text: "Test: Telegram delivery", done: true },
+          { text: "Test: Slack delivery", done: true },
+          { text: "Test: Gmail read", done: true },
+          { text: "Test: sub-agent spawn (Sonnet)", done: true },
+          { text: "Test: sandbox write access", done: true },
+          { text: "Test: Sonos bridge", done: true },
+          { text: "Test: Missive webhook (confirmed working via Funnel)", done: true },
+          { text: "MEMORY.md stale mount fixed by restart", done: true },
           { text: "Enable 1M context beta (params.context1m: true)", done: false },
           { text: "Update oc-version-pin.py with new version", done: false },
+          { text: "GA4 property access — 403, needs re-check", done: false, note: "Not upgrade-related" },
         ],
       },
       {
@@ -1244,7 +1250,7 @@ export default function BuildPlanDashboard() {
           <span style={{ fontSize: "20px" }}>🦞</span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.15 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-23 · Day 12
+          OpenClaw v2026.2.22-2 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-23 · Day 12
         </p>
         <div
           style={{
