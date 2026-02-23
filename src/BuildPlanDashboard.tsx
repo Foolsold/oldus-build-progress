@@ -493,7 +493,8 @@ const phases = [
           { text: "Rule 5: Pre-spawn checklist enforced", done: true },
           { text: "Create /sandbox/ directory structure", done: true },
           { text: "MEMORY.md updated with all 5 rules", done: true },
-          { text: "Scope down chmod sledgehammer cron", done: false, note: "After isolation proven stable" },
+          { text: "Scope down chmod sledgehammer cron", done: true },
+          { text: "Memory sync cron (root, every 30min) to protected/", done: true },
         ],
       },
       {
@@ -929,9 +930,10 @@ const phases = [
       {
         id: "ops.9",
         title: "Finance Son cleanup",
-        status: "not-started",
+        status: "done",
         description:
-          "James accidentally deployed Finance Son. Verify it was stopped/removed. No SOUL.md exists for it.",
+          "James accidentally deployed Finance Son. Confirmed cleaned up.",
+        completedDate: "2026-02-23",
       },
       {
         id: "ops.10",
