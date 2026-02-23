@@ -435,26 +435,32 @@ const phases = [
       {
         id: "p2.3",
         title: "CI-equivalent local validation",
-        status: "not-started",
+        status: "done",
         description:
-          "Quick win building on existing oc-config-validate and snapshot-state scripts.",
+          "Makefile at workspace root. make test (config + crons + perms + git + snapshot), make reset (clear transient state), make status (system overview).",
+        completedDate: "2026-02-23",
         subItems: [
-          { text: "make test — config validation + contract tests + snapshot verification", done: false },
-          { text: "make reset — nuke state/session caches but not snapshots", done: false },
-          { text: "Makefile in workspace root", done: false },
+          { text: "make test — config validation + crons + perms + git remotes + snapshots", done: true },
+          { text: "make reset — clear sandbox test dirs + retry queue + processed missive", done: true },
+          { text: "make status — system overview (versions, services, counts)", done: true },
+          { text: "Makefile in workspace root", done: true },
         ],
       },
       {
         id: "p2.4",
         title: "Disaster recovery runbook",
-        status: "not-started",
+        status: "done",
         description:
-          "Written procedure: bare Ubuntu → running Oldus in 20 minutes using GitHub backups + golden tar. Foundation for Oldus In A Box provisioning.",
+          "8-phase runbook at docs/DISASTER-RECOVERY.md. Bare Ubuntu → running Oldus in 15-25 min. Covers system setup, user creation, golden tar restore, credentials, gateway, crons, validation, Son deployment.",
+        completedDate: "2026-02-23",
         subItems: [
-          { text: "Step-by-step runbook document", done: false },
-          { text: "Tested on fresh VPS", done: false },
-          { text: "Automated provisioning script (optional)", done: false },
-          { text: "Include Son deployment in runbook", done: false },
+          { text: "Step-by-step runbook document (8 phases)", done: true },
+          { text: "Golden tar path (preferred) + GitHub-only fallback", done: true },
+          { text: "Credential checklist (15 keys)", done: true },
+          { text: "Host crontab install commands (all 6)", done: true },
+          { text: "Son deployment included", done: true },
+          { text: "Smoke test checklist", done: true },
+          { text: "Tested on fresh VPS", done: false, note: "TODO — validates the 20-min claim" },
         ],
       },
       {
@@ -500,11 +506,12 @@ const phases = [
       {
         id: "p2.7",
         title: "Sonnet rate limit investigation",
-        status: "not-started",
+        status: "in-progress",
         description:
-          "Keep hitting 429s on Sonnet despite billing console showing plenty of capacity. Hit when running 3 parallel sub-agents. Investigate: is it per-key, per-org, per-model concurrency? Check Anthropic rate limit headers.",
+          "Keep hitting 429s on Sonnet despite billing console showing plenty of capacity. Header capture added to MEMORY.md — will collect data next time it happens naturally during real sub-agent work.",
         subItems: [
-          { text: "Check rate limit headers from API responses", done: false },
+          { text: "Header capture instructions in MEMORY.md", done: true },
+          { text: "Capture rate limit headers from next natural 429", done: false },
           { text: "Test sequential vs parallel sub-agent spawning", done: false },
           { text: "Compare billing console limits vs actual throttling", done: false },
           { text: "Document findings and workaround", done: false },
@@ -944,15 +951,25 @@ const phases = [
       {
         id: "ops.10",
         title: "Repo hygiene",
-        status: "not-started",
+        status: "in-progress",
         description:
-          "Archive cardstar-frontend (superseded by V2). Delete empty repos. Create golden-config repo. Merge agentbus deploy branch to main.",
+          "Agentbus branch merged to main. cardstar-frontend + mount-craft-studio need archiving (PAT lacks admin scope). Empty repos need deleting.",
         subItems: [
-          { text: "Archive cardstar-frontend repo", done: false },
-          { text: "Delete empty repos", done: false },
+          { text: "Merge oldus/deploy-script-rewrite → main on agentbus", done: true },
+          { text: "Archive cardstar-frontend repo", done: false, note: "James — Settings → Archive" },
+          { text: "Archive mount-craft-studio repo", done: false, note: "James — Settings → Archive" },
+          { text: "Delete image_pipeline (empty)", done: false, note: "James — Settings → Delete" },
+          { text: "Delete artist-army (empty, recreate when needed)", done: false, note: "James — Settings → Delete" },
           { text: "Create Foolsold/oldus-golden-config repo", done: false },
-          { text: "Merge oldus/deploy-script-rewrite → main on agentbus", done: false },
         ],
+      },
+      {
+        id: "ops.11",
+        title: "Missive reconcile script",
+        status: "done",
+        description:
+          "Idempotent reconciliation at scripts/missive-reconcile.sh. Checks cron exists, model string correct, ID file matches, webhook running, Funnel active. --fix flag for auto-repair.",
+        completedDate: "2026-02-23",
       },
     ],
   },
