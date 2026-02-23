@@ -508,7 +508,39 @@ const phases = [
         ],
       },
       {
-        id: "p2.8",
+        id: "p2.9",
+        title: "OpenClaw upgrade v2026.2.15 → v2026.2.21",
+        status: "not-started",
+        description:
+          "6 releases behind. Key gains: 1M context beta, /subagents spawn, subagent overflow fixes, per-channel model overrides, massive security hardening, Gemini 3.1, Slack streaming. No breaking changes listed. Upgrade plan: snapshot → npm install → restart → post-restart-check → test.",
+        subItems: [
+          { text: "Golden backup + snapshot-state", done: false },
+          { text: "npm install -g openclaw@latest", done: false },
+          { text: "Restart gateway", done: false },
+          { text: "Run post-restart-check.py (19 checks)", done: false },
+          { text: "Test: Telegram delivery", done: false },
+          { text: "Test: sub-agent spawn", done: false },
+          { text: "Test: cron fire", done: false },
+          { text: "Test: sandbox write access", done: false },
+          { text: "Enable 1M context beta (params.context1m: true)", done: false },
+          { text: "Update oc-version-pin.py with new version", done: false },
+        ],
+      },
+      {
+        id: "p2.10",
+        title: "Ubuntu security updates",
+        status: "not-started",
+        description:
+          "8 ESM Apps security updates pending. Standard updates also available. Run apt list --upgradable to review. Consider ESM Apps enablement for extended security coverage.",
+        subItems: [
+          { text: "Review apt list --upgradable", done: false },
+          { text: "Apply standard security updates", done: false },
+          { text: "Evaluate Ubuntu ESM Apps enablement", done: false },
+          { text: "Reboot if kernel updated", done: false },
+        ],
+      },
+      {
+        id: "p2.11",
         title: "Agentbus integration tests",
         status: "not-started",
         description:
@@ -543,6 +575,11 @@ const phases = [
           { text: "Branch convention: oldus/<description>, never main", done: true },
           { text: "Default Sonnet, escalate to Opus for architecture", done: true },
           { text: "Full bridge skill with job envelopes", done: false, note: "Direct calls sufficient for now" },
+          { text: "Superpowers plugin v4.3.1 (obra/superpowers) — TDD, brainstorm→plan→implement", done: true },
+          { text: "UI/UX Pro Max plugin v2.0.1 — 67 styles, 97 palettes, 57 font pairings", done: true },
+          { text: "Context7 MCP (upstash/context7) — live API docs lookup", done: true },
+          { text: "Reference: openclaw-claude-code-plugin — study for bridge patterns", done: true, note: "Not installed, study only" },
+          { text: "Reference: openclaw-mem — SQLite memory sidecar, future experiment", done: false, note: "Parked" },
         ],
       },
       {
@@ -847,8 +884,57 @@ const phases = [
         title: "Build progress tracker",
         status: "done",
         description:
-          "React dashboard tracking all build progress. Published to GitHub Pages. Living document updated as items complete.",
+          "React dashboard tracking all build progress. GitHub repo created (Foolsold/oldus-build-progress). GitHub Actions CI/CD for auto-deploy to Pages on push.",
         completedDate: "2026-02-22",
+        subItems: [
+          { text: "React + Vite dashboard built (237KB, 75KB gzipped)", done: true },
+          { text: "GitHub repo created and pushed", done: true },
+          { text: "GitHub Actions workflow for Pages deploy", done: true },
+          { text: "Enable GitHub Pages in repo settings (Source: GitHub Actions)", done: false },
+          { text: "Verify live at foolsold.github.io/oldus-build-progress/", done: false },
+        ],
+      },
+      {
+        id: "ops.7",
+        title: "Host crontab entries (not OpenClaw crons)",
+        status: "not-started",
+        description:
+          "Scripts built but crontab entries not installed on host. Need root access to install.",
+        subItems: [
+          { text: "daily-backup.sh (3am UTC)", done: false },
+          { text: "health-watchdog.py (every 15 min)", done: false },
+          { text: "cost-tracker.py (8am UTC)", done: false },
+          { text: "oauth-refresh.py (every 6h)", done: false },
+          { text: "logrotate config installed at /etc/logrotate.d/oldus", done: false },
+          { text: "protected/ sync cron (every 30 min, root-owned)", done: false },
+        ],
+      },
+      {
+        id: "ops.8",
+        title: "Router daemon as systemd service",
+        status: "not-started",
+        description:
+          "Agentbus router works but runs manually. Needs systemd unit for reliable operation. Messages currently manually routed during testing.",
+      },
+      {
+        id: "ops.9",
+        title: "Finance Son cleanup",
+        status: "not-started",
+        description:
+          "James accidentally deployed Finance Son. Verify it was stopped/removed. No SOUL.md exists for it.",
+      },
+      {
+        id: "ops.10",
+        title: "Repo hygiene",
+        status: "not-started",
+        description:
+          "Archive cardstar-frontend (superseded by V2). Delete empty repos. Create golden-config repo. Merge agentbus deploy branch to main.",
+        subItems: [
+          { text: "Archive cardstar-frontend repo", done: false },
+          { text: "Delete empty repos", done: false },
+          { text: "Create Foolsold/oldus-golden-config repo", done: false },
+          { text: "Merge oldus/deploy-script-rewrite → main on agentbus", done: false },
+        ],
       },
     ],
   },
@@ -1142,7 +1228,7 @@ export default function BuildPlanDashboard() {
           <span style={{ fontSize: "20px" }}>🦞</span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.15 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-22 · Day 11
+          OpenClaw v2026.2.15 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-23 · Day 12
         </p>
         <div
           style={{
