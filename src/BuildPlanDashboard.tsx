@@ -188,7 +188,7 @@ const phases = [
           { text: "Missive API token", done: true },
           { text: "Prodigi sandbox key", done: true },
           { text: "Google AI / Gemini key", done: true },
-          { text: "GitHub PAT (read/write)", done: true },
+          { text: "GitHub PAT (read/write/admin/create/delete)", done: true },
           { text: "Slack bot token", done: true },
           { text: "Telegram bot token", done: true },
           { text: "Discord bot token", done: true },
@@ -582,8 +582,8 @@ const phases = [
         title: "Claude Code integration",
         status: "done",
         description:
-          "Claude Code 2.1.49 + Node.js v22 baked into Docker sandbox. ANTHROPIC_API_KEY injected (policy exception). Direct claude -p calls working at $0.045/call on Sonnet.",
-        completedDate: "2026-02-22",
+          "Claude Code 2.1.49 + Node.js v22 baked into Docker sandbox. ANTHROPIC_API_KEY injected (policy exception). Direct claude -p calls working. Superpowers brainstorming override built for headless compatibility.",
+        completedDate: "2026-02-23",
         subItems: [
           { text: "Claude Code installed in sandbox Docker image", done: true },
           { text: "ANTHROPIC_API_KEY policy exception approved", done: true },
@@ -591,9 +591,13 @@ const phases = [
           { text: "Branch convention: oldus/<description>, never main", done: true },
           { text: "Default Sonnet, escalate to Opus for architecture", done: true },
           { text: "Full bridge skill with job envelopes", done: false, note: "Direct calls sufficient for now" },
-          { text: "Superpowers plugin v4.3.1 (obra/superpowers) — TDD, brainstorm→plan→implement", done: true },
-          { text: "UI/UX Pro Max plugin v2.0.1 — 67 styles, 97 palettes, 57 font pairings", done: true },
-          { text: "Context7 MCP (upstash/context7) — live API docs lookup", done: true },
+          { text: "Superpowers plugin v4.3.1 reinstalled (wiped by sandbox recreation)", done: true },
+          { text: "Context7 MCP plugin reinstalled (wiped by sandbox recreation)", done: true },
+          { text: "UI/UX Pro Max plugin", done: false, note: "Wiped by sandbox recreation — reinstall when needed" },
+          { text: "Brainstorming skill override at workspace skills/brainstorming/SKILL.md", done: true },
+          { text: "Override: spec provided → fast path (skip approval), no spec → full brainstorm", done: true },
+          { text: "Override tested: fast path works, full path preserves HARD-GATE", done: true },
+          { text: "CLAUDE.md headless mode section added to CardStar V2", done: true },
           { text: "Reference: openclaw-claude-code-plugin — study for bridge patterns", done: true, note: "Not installed, study only" },
           { text: "Reference: openclaw-mem — SQLite memory sidecar, future experiment", done: false, note: "Parked" },
         ],
@@ -834,10 +838,10 @@ const phases = [
           { text: "All 5 backlogged mentions processed and replied", done: true },
           { text: "Fixed stale cron ID + wrong model string (23 Feb)", done: true },
           { text: "File-based cron ID at /etc/openclaw/cron-ids/missive-queue", done: true },
-          { text: "Add cron ID file to golden backup script", done: false },
+          { text: "Add cron ID file to golden backup script", done: true },
           { text: "Boot-time health check oneshot (systemd, alerts to Slack)", done: false },
           { text: "Verify tailscale funnel persists across reboots", done: false },
-          { text: "Reconcile script (missive-reconcile.sh) — self-healing drift detection", done: false },
+          { text: "Reconcile script (missive-reconcile.sh --fix) — self-healing drift detection", done: true },
           { text: "Webhook secret validation (X-Hook-Signature)", done: false },
           { text: "Move queue from filesystem to SQLite", done: false, note: "Backlog" },
           { text: "Retry/backoff for failed Missive API replies", done: false, note: "Backlog" },
@@ -914,8 +918,8 @@ const phases = [
           { text: "React + Vite dashboard built (237KB, 75KB gzipped)", done: true },
           { text: "GitHub repo created and pushed", done: true },
           { text: "GitHub Actions workflow for Pages deploy", done: true },
-          { text: "Enable GitHub Pages in repo settings (Source: GitHub Actions)", done: false },
-          { text: "Verify live at foolsold.github.io/oldus-build-progress/", done: false },
+          { text: "Enable GitHub Pages in repo settings (Source: GitHub Actions)", done: true },
+          { text: "Verify live at foolsold.github.io/oldus-build-progress/", done: true },
         ],
       },
       {
@@ -953,14 +957,14 @@ const phases = [
         title: "Repo hygiene",
         status: "in-progress",
         description:
-          "Agentbus branch merged to main. cardstar-frontend + mount-craft-studio need archiving (PAT lacks admin scope). Empty repos need deleting.",
+          "Agentbus branch merged. GitHub PAT upgraded with admin perms — can now create/archive/delete repos. Deletion requires James's explicit written approval.",
         subItems: [
           { text: "Merge oldus/deploy-script-rewrite → main on agentbus", done: true },
-          { text: "Archive cardstar-frontend repo", done: false, note: "James — Settings → Archive" },
-          { text: "Archive mount-craft-studio repo", done: false, note: "James — Settings → Archive" },
-          { text: "Delete image_pipeline (empty)", done: false, note: "James — Settings → Delete" },
-          { text: "Delete artist-army (empty, recreate when needed)", done: false, note: "James — Settings → Delete" },
-          { text: "Create Foolsold/oldus-golden-config repo", done: false },
+          { text: "GitHub PAT upgraded with admin/create/delete perms", done: true },
+          { text: "Archive cardstar-frontend repo", done: false, note: "Ready — PAT has perms" },
+          { text: "Archive mount-craft-studio repo", done: false, note: "Ready — PAT has perms" },
+          { text: "Delete empty repos (image_pipeline, artist-army)", done: false, note: "Need James's written approval per new rule" },
+          { text: "Create Foolsold/oldus-golden-config repo", done: false, note: "Ready — PAT has perms" },
         ],
       },
       {
@@ -998,7 +1002,8 @@ const securityItems = [
   { text: "CGNAT traffic leak fixed (iptables FORWARD drop rule)", done: true },
   { text: "Shopify client credentials with 24hr token rotation", done: true },
   { text: "Operational guardrails policy deployed to Oldus", done: true },
-  { text: "Scoped GitHub PAT (3 repos only)", done: false, note: "Optional — all-repos access intentional" },
+  { text: "GitHub PAT upgraded — admin/create/delete perms added", done: true },
+  { text: "GitHub repo deletion requires explicit James approval (operational rule)", done: true },
 ];
 
 const operationalRules = [
@@ -1024,16 +1029,19 @@ const operationalRules = [
   "Use Claude Code (not raw sub-agents) for existing codebase modifications — git branch safety.",
   "Never delete a cron to change it — use 'openclaw cron edit <id>'. ID must remain stable. Cron ID files at /etc/openclaw/cron-ids/ are source of truth.",
   "The correct Sonnet model string is anthropic/claude-sonnet-4-5-20250929. Not claude-sonnet-4-6. Not anthropic/claude-sonnet-4-6.",
+  "Never delete a GitHub repository without explicit written approval from James. Archiving is fine autonomously, deletion is not.",
+  "Superpowers brainstorming: workspace override at skills/brainstorming/SKILL.md. Spec provided → fast path. No spec → full approval cycle.",
   "OpenClaw cron subcommands: add, edit, rm, run, runs, list, enable, disable, status. No 'logs'. No 'get'. 'run' takes ID not name.",
   "Golden backup must include: cron ID files, webhook scripts, systemd service files, openclaw cron list output.",
 ];
 
 const repoStatus = [
   { name: "oldus-config", status: "active", note: "Golden config + 6hr auto-sync. Source of truth." },
-  { name: "agentbus", status: "active", note: "Router, inbox handler, deploy configs. Active development." },
+  { name: "agentbus", status: "active", note: "Router, inbox handler, deploy configs. All branches merged to main." },
   { name: "cardstar-v2", status: "active", note: "62 templates, canvas renderer, Shopify cart, editor." },
   { name: "readymades-framing-engine", status: "active", note: "Shopify Remix app. 2/6 tests failing — needs fix." },
   { name: "sons-of-oldus", status: "active", note: "Agent architecture specs. Golden config files removed." },
+  { name: "oldus-build-progress", status: "active", note: "This dashboard. GitHub Pages auto-deploy via Actions." },
   { name: "operation-oldus", status: "waiting", note: "SPEC.md only. Build when prioritised." },
   { name: "artist-army", status: "waiting", note: "Will hold magnoliabox.com pipeline. Empty scaffold." },
   { name: "mount-craft-studio", status: "archived", note: "Read-only reference. Lovable PoC for framing engine." },
@@ -1267,7 +1275,7 @@ export default function BuildPlanDashboard() {
           <span style={{ fontSize: "20px" }}>🦞</span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.22-2 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-23 · Day 12
+          OpenClaw v2026.2.22-2 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-23 (PM) · Day 12
         </p>
         <div
           style={{
