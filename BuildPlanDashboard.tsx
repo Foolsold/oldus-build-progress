@@ -1,7 +1,168 @@
 import { useState } from "react";
 
 const phases = [
-  {
+    {
+    id: "day20",
+    title: "Day 20 — Multi-Agent Architecture Live",
+    status: "in-progress",
+    goldenSnapshot: "4 Sons as sub-agents ✅",
+    items: [
+      {
+        id: "day20.0",
+        title: "Opus 4.5 model switch",
+        status: "done",
+        description:
+          "agents.defaults.model.primary changed from claude-opus-4-6 to claude-opus-4-5-20251101. Same pricing but potentially more efficient token usage.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.1",
+        title: "Four Sons registered on gateway",
+        status: "done",
+        description:
+          "marketing-son, cs-son, engineering-son, finance-son added to openclaw.json agents.list as sub-agents. NOT separate gateways — spawn on-demand via sessions_spawn(agentId='son-name'). Each has agentDir with IDENTITY.md containing CORE-RULES.md.",
+        completedDate: "2026-03-03",
+        subItems: [
+          { text: "marketing-son configured", done: true },
+          { text: "cs-son configured", done: true },
+          { text: "engineering-son configured", done: true },
+          { text: "finance-son configured", done: true },
+          { text: "CORE-RULES.md merged into each Son's IDENTITY.md", done: true },
+          { text: "Son dispatch tested (engineering-son confirmed reading rules)", done: true },
+        ],
+      },
+      {
+        id: "day20.2",
+        title: "OpenClaw crons policy",
+        status: "done",
+        description:
+          "New rule: All crons must use sonnet-worker or haiku-worker. Never default/main. No exceptions. Saves Opus tokens on background jobs.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.3",
+        title: "Command Hub Phase 1",
+        status: "done",
+        description:
+          "Unified operational dashboard built: collector.py (system stats, trace logs, handoffs), index.html (dark theme, Tailwind), serve.sh. Python stdlib only.",
+        completedDate: "2026-03-03",
+        subItems: [
+          { text: "collector.py — gathers gateway, Son, disk, memory, trace data", done: true },
+          { text: "index.html — responsive dark theme dashboard", done: true },
+          { text: "serve.sh — Python HTTP server wrapper", done: true },
+          { text: "install.sh — setup script", done: true },
+          { text: "Deployed and serving", done: false, note: "Files built, not yet running" },
+        ],
+      },
+      {
+        id: "day20.4",
+        title: "Sonnet rate limit resolution (P2.7)",
+        status: "done",
+        description:
+          "Resolved via agent-based dispatch. sonnet-worker and haiku-worker handle sub-agent tasks. Gateway manages concurrency. No custom rate limiting needed.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.5",
+        title: "Worker sandbox isolation",
+        status: "done",
+        description:
+          "Confirmed working. sonnet-worker and haiku-worker have empty binds arrays — isolated from main workspace. Handoff protocol designed to bridge the gap.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.6",
+        title: "Git safety hooks",
+        status: "done",
+        description:
+          "Pre-commit hooks installed on 8 repos. Blocks: >500 files, node_modules, .env, secret patterns. Prevents repeat of Day 11 node_modules incident.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.7",
+        title: "Agent manifest schema",
+        status: "done",
+        description:
+          "JSON Schema for agent definitions. 7 manifests created (prime, sonnet-worker, haiku-worker, 4 Sons). validate.py and list.py tools.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.8",
+        title: "Ops tooling built",
+        status: "done",
+        description:
+          "session-bloat-monitor.py, daily-cost-summary.py, log-aggregator.sh, daily-manifest.py, gateway-watchdog.py (now only checks gateway, not fake Son services).",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.9",
+        title: "Tracing system",
+        status: "partial",
+        description:
+          "BUILT BUT NOT DEPLOYED: trace-init.py, trace-logger.sh, trace-query.sh, trace-rotate.sh, agentbus-trace.py all exist. /var/log/oldus/ created but empty — nothing writes trace.jsonl yet.",
+        subItems: [
+          { text: "trace-init.py — UUID4 generator", done: true },
+          { text: "trace-logger.sh — bash wrapper", done: true },
+          { text: "trace-query.sh — query tool", done: true },
+          { text: "trace-rotate.sh — log rotation", done: true },
+          { text: "agentbus-trace.py — correlation_id injection", done: true },
+          { text: "/var/log/oldus/ directory exists", done: true },
+          { text: "Trace writing integrated into agents", done: false },
+          { text: "trace.jsonl populated with real data", done: false },
+        ],
+      },
+      {
+        id: "day20.10",
+        title: "Daily manifest",
+        status: "partial",
+        description:
+          "BUILT BUT NOT DEPLOYED: daily-manifest.py exists, produces empty output because tracing isn't running. Needs cron job added.",
+        subItems: [
+          { text: "daily-manifest.py script", done: true },
+          { text: "Cron job installed", done: false },
+          { text: "Produces useful output", done: false },
+        ],
+      },
+      {
+        id: "day20.11",
+        title: "Handoff protocol",
+        status: "partial",
+        description:
+          "BUILT BUT NOT DEPLOYED: handoff-init.sh, handoff-review.py, MANIFEST.json schema, SUB_AGENT_INSTRUCTIONS.md all exist. Bind mount NOT in openclaw.json — sub-agents can't access /handoff/.",
+        subItems: [
+          { text: "handoff-init.sh", done: true },
+          { text: "handoff-review.py", done: true },
+          { text: "MANIFEST.json schema", done: true },
+          { text: "handoff-cleanup.sh", done: true },
+          { text: "SUB_AGENT_INSTRUCTIONS.md", done: true },
+          { text: "Bind mount in openclaw.json", done: false, note: "Blocking — sub-agents can't write to /handoff/" },
+        ],
+      },
+      {
+        id: "day20.12",
+        title: "OneClickLayout API audit",
+        status: "done",
+        description:
+          "Scraped and documented OneClickLayout API (12 endpoints, 3 groups: Chapters, Orders, Fonts). Pushed to Core-ArtPlatform-Playground repo as reference material.",
+        completedDate: "2026-03-03",
+      },
+      {
+        id: "day20.13",
+        title: "Agentbus architecture reassessment",
+        status: "waiting",
+        description:
+          "NEEDS REVISION: Sons now use sessions_spawn as sub-agents, not separate gateways via Agentbus. Need to determine if Agentbus routing is still needed or if sub-agent model replaces it entirely.",
+      },
+      {
+        id: "day20.14",
+        title: "Gateway isolation spec",
+        status: "waiting",
+        description:
+          "NEEDS REVISION: Original spec designed for separate Son gateways. Current architecture is single gateway with sub-agents. Spec needs updating to reflect new approach.",
+      },
+    ],
+  },
+{
     id: "p0",
     title: "P0 — Fix Foundations (Blocking)",
     status: "complete",
@@ -346,9 +507,9 @@ const phases = [
       {
         id: "sons.8",
         title: "Marketing Performance Son — first Son deployed",
-        status: "in-progress",
+        status: "parked",
         description:
-          "First Son running on port 18790 with own gateway instance. Extensive debugging on Day 11: auth, Docker perms, config paths, bind mounts. Son responds to direct messages. Automated routing loop still needs ACL fix.",
+          "ARCHITECTURE CHANGED (Day 20): Sons are now sub-agents dispatched via sessions_spawn, not separate gateway instances. Marketing Son disabled since Day 17 (permission script syslog spam). Original separate-gateway approach abandoned.",
         subItems: [
           { text: "Own OpenClaw gateway on port 18790 (systemd service)", done: true },
           { text: "Independent OPENCLAW_GATEWAY_TOKEN + DEVICE_TOKEN", done: true },
@@ -374,7 +535,7 @@ const phases = [
         title: "Son deployment playbook",
         status: "in-progress",
         description:
-          "Repeatable process for deploying new Sons. Day 11 debugging surfaced numerous issues that need to be captured so Son #2 doesn't repeat them.",
+          "ARCHITECTURE CHANGED (Day 20): Sons now deploy as sub-agents in openclaw.json agents.list, not separate gateways. Each Son needs: agentDir with IDENTITY.md (containing CORE-RULES.md), workspace path, model assignment. No separate systemd services needed.",
         subItems: [
           { text: "deploy_son.sh script exists (creates user, dirs, gateway config)", done: true },
           { text: "Reference config template for Son gateway (openclaw.json)", done: true },
@@ -875,7 +1036,7 @@ export default function BuildPlanDashboard() {
           <span style={{ fontSize: "20px" }}>🦞</span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.15 · Claude Opus 4.6 · Hetzner ARM · Updated 2026-02-22 · Day 11
+          OpenClaw v2026.2.26 · Claude Opus 4.5 · Hetzner ARM · Updated 2026-03-03 · Day 20
         </p>
         <div
           style={{
