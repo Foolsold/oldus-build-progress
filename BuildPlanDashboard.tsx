@@ -486,9 +486,9 @@ const phases = [
       {
         id: "sons.7",
         title: "Agentbus router daemon",
-        status: "in-progress",
+        status: "parked",
         description:
-          "Pure Python daemon (systemd), no LLM calls. Core routing works. Permission/ACL issues between agent users caused deadlettering on Day 11. Deploy script and HARDENED-DEFAULTS.md need updating based on learnings.",
+          "PARKED (Day 20): Router designed for independent Son gateways, not sub-agents. Current architecture uses sessions_spawn for Son dispatch. Infrastructure and policy intact for future gateway isolation architecture. Not abandoned — will resume when Sons graduate to independent gateways.",
         subItems: [
           { text: "Router scan loop (outbox polling)", done: true },
           { text: "Policy enforcement (PolicyMap application)", done: true },
