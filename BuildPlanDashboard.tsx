@@ -160,6 +160,14 @@ const phases = [
         description:
           "NEEDS REVISION: Original spec designed for separate Son gateways. Current architecture is single gateway with sub-agents. Spec needs updating to reflect new approach.",
       },
+      {
+        id: "day20.15",
+        title: "Ubuntu security updates (p2.10)",
+        status: "done",
+        description:
+          "8 ESM Apps security updates applied. Ubuntu Pro attached for extended security coverage. ImageMagick patches included. No reboot required.",
+        completedDate: "2026-03-03",
+      },
     ],
   },
 {
