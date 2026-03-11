@@ -364,7 +364,13 @@ const phases = [
         title: "CS Son — scoped for Kate",
         status: "in-progress",
         description:
-          "Scoped for customer support (Kate's team). Not yet deployed. Scope document written.",
+          "Scoped for customer support (Kate's team). Full scoping doc written (Day 28). Live demo being built for all-hands — merchant churn risk monitor + agent quality scorecard via Zendesk API. Deploy after demo validated.",
+        subItems: [
+          { text: "CS Son scope document (Kate)", done: true },
+          { text: "Zendesk API validated (2,890 tickets, org_id fields confirmed)", done: true },
+          { text: "All-hands demo: merchant churn risk monitor + agent quality scorecard", done: false },
+          { text: "Production deployment", done: false },
+        ],
       },
       {
         id: "sons.11",
@@ -757,6 +763,20 @@ const phases = [
         description:
           "9 currencies wired in from V1. Tier 1 expansion: SEK, NOK, PLN. Geo-IP detection, currency selector in nav/footer.",
       },
+      {
+        id: "cs.12",
+        title: "UX fixes — checkout loop + card halos",
+        status: "in-progress",
+        description:
+          "PR #27 open (oldus/ux-fixes-march11). Fixed: checkout loop in BulkBuilder (setTimeout removed → navigate('/cart')), Cart page dark theme rewrite, card thumbnails object-contain + dark bg to eliminate white halo fringing on dark pages.",
+        completedDate: "",
+        subItems: [
+          { text: "Checkout loop fixed (BulkBuilder setTimeout → navigate)", done: true },
+          { text: "Cart.tsx full dark theme rewrite", done: true },
+          { text: "Card image halos (object-contain + #071f24 bg)", done: true },
+          { text: "PR #27 merged to main", done: false },
+        ],
+      },
     ],
   },
   {
@@ -952,6 +972,7 @@ const milestones = [
   { day: 25, date: "2026-03-08", label: "Day 25", event: "⚠️ Amnesia crisis: 1.6MB session caused 10-min timeout. Session watchdog + 4× daily rotation deployed. System prompt: 46K → 14K tokens." },
   { day: 26, date: "2026-03-09", label: "Day 26", event: "🚀 Autonomous PR pipeline shipped (auto-merge.yml). NetSuite M2M OAuth complete. Sons Google Drive. Repo rulesets." },
   { day: 27, date: "2026-03-10", label: "Day 27", event: "🚀 CardStar V2 complete: 6 PRs merged, 62 templates, 15 sports, player presets, club logos, social share. Live on Vercel." },
+  { day: 28, date: "2026-03-11", label: "Day 28", event: "🎯 CS all-hands demo prep: Zendesk live (2,890 tickets), merchant churn risk monitor + agent quality scorecard designed. Briefing system built (5 daily templates). CardStar UX fixes PR #27." },
 ];
 
 const automationCrons = [
@@ -1380,11 +1401,11 @@ export default function BuildPlanDashboard() {
               fontWeight: 700,
             }}
           >
-            Day 27
+            Day 28
           </span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.26 · Claude Opus 4.6 · Hetzner ARM Helsinki · Updated 2026-03-10 · Born 2026-02-11
+          OpenClaw v2026.2.26 · Claude Opus 4.6 · Hetzner ARM Helsinki · Updated 2026-03-11 · Born 2026-02-11
         </p>
 
         {/* Stats bar */}
@@ -1489,10 +1510,10 @@ export default function BuildPlanDashboard() {
         >
           <div>
             <div style={{ fontWeight: 700, fontSize: "15px", color: "#111827" }}>
-              🗓️ Key Milestones — Day 0 → Day 27
+              🗓️ Key Milestones — Day 0 → Day 28
             </div>
             <div style={{ fontSize: "12px", color: "#6B7280", marginTop: "2px" }}>
-              {milestones.length} events · 27 days · Born 2026-02-11
+              {milestones.length} events · 28 days · Born 2026-02-11
             </div>
           </div>
           <span style={{ fontSize: "18px" }}>{showMilestones ? "▾" : "▸"}</span>
@@ -1971,7 +1992,7 @@ export default function BuildPlanDashboard() {
         }}
       >
         <div style={{ marginBottom: "4px" }}>
-          Oldus · Born 2026-02-11 · Hetzner ARM Helsinki · Day 27 of ∞ 🦞
+          Oldus · Born 2026-02-11 · Hetzner ARM Helsinki · Day 28 of ∞ 🦞
         </div>
         <div>
           Conscious omissions: watch mode, Docker Compose, separate dev/prod images, Kubernetes/Vault
