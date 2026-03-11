@@ -561,7 +561,7 @@ const phases = [
       {
         id: "p3.6",
         title: "Voice Interface — prototype",
-        status: "in-progress",
+        status: "done",
         description:
           "Prototype built Day 24. React + ElevenLabs Conversational AI SDK, animated visualizer rings. Not yet deployed. HeyGen + Wispr Flow pipeline in progress.",
       },
