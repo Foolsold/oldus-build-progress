@@ -547,7 +547,7 @@ const phases = [
         title: "Budget System",
         status: "done",
         description:
-          "SQLite ledger, session JSONL parser (reads real cost.total from agent session files), CLI tool (oldus-budget), 3 crons. Budget pools: Prime $75/day, Sons $50/day pool. 80%/100% alerting. Total spend to Date: ~$2,416.93.",
+          "SQLite ledger, session JSONL parser (reads real cost.total from agent session files), CLI tool (oldus-budget), 3 crons. Budget pools: Prime $75/day, Sons $50/day pool. 80%/100% alerting. Total spend to Date: ~$2,417 USD (£1,850 ex VAT).",
         completedDate: "2026-03-06",
       },
       {
@@ -611,7 +611,7 @@ const phases = [
         title: "Token Economics",
         status: "in-progress",
         description:
-          "Build spec written. Ledger deployed (SQLite). Total spend ~$2,416.93. ~50% was avoidable waste (Day 6 $700, 20 days wrong model routing ~$132/day, context bloat). Day 3 principle → Day 23 implementation = 20 days avoidable spend.",
+          "Build spec written. Ledger deployed (SQLite). Total spend ~$2,417 USD (£1,850 ex VAT). ~50% was avoidable waste (Day 6 $700, 20 days wrong model routing ~$132/day, context bloat, ArtPlatform gibberish). Day 3 principle → Day 23 implementation = 20 days avoidable spend.",
         subItems: [
           { text: "Spend spec written", done: true },
           { text: "SQLite ledger deployed", done: true },
@@ -782,16 +782,16 @@ const phases = [
   {
     id: "artplatform",
     title: "ArtPlatform / Book Builder",
-    status: "in-progress",
-    goldenSnapshot: "GitHub: Oldus-AI/artplatform · PR #4 merged ✅",
+    status: "blocked",
+    goldenSnapshot: "⚠️ Day 20 build was waste — 35K lines of gibberish that ignored Mike's source material. Being rebuilt properly.",
     items: [
       {
         id: "ap.0",
-        title: "Phase 1 — Foundation (merged PR #4)",
-        status: "done",
+        title: "Phase 1 — Foundation (FAILED — waste)",
+        status: "blocked",
         description:
-          "Built overnight Day 20. 63 layouts across 6 categories, Constraints Service, Layout Compiler, three-payload architecture (Template + Project → Resolved). SpreadStrip, SpreadCanvas, LayoutPicker components. ARCHITECTURE.md for Mike/Minerva onboarding. ~35K lines of code.",
-        completedDate: "2026-03-04",
+          "Built overnight Day 20 WITHOUT reading Mike's existing source material. 35K lines of gibberish. Three-payload architecture, SpreadStrip/SpreadCanvas components, 63 layouts — all fundamentally wrong. Complete rebuild required using Mike's actual spec and code.",
+        completedDate: "",
         subItems: [
           { text: "layouts-v2.ts — 63 layouts, 6 categories", done: true },
           { text: "product-catalog.ts — 5 products, 24 SKUs", done: true },
@@ -807,11 +807,11 @@ const phases = [
       },
       {
         id: "ap.1",
-        title: "Phase 1 extended (Phases 27-32 merged)",
-        status: "done",
+        title: "Phase 1 extended (Phases 27-32 — also waste)",
+        status: "blocked",
         description:
-          "Day 21: checkout flow, Prodigi API integration, auto-layout, analytics, templates, validation, text editing. ~35K total lines across 35 phases merged.",
-        completedDate: "2026-03-04",
+          "Day 21: checkout flow, Prodigi API integration, auto-layout, analytics, templates, validation, text editing built on top of the wrong foundation. All 35 phases need to be scrapped and rebuilt from Mike's actual spec.",
+        completedDate: "",
       },
       {
         id: "ap.2",
@@ -964,7 +964,7 @@ const milestones = [
   { day: 17, date: "2026-02-28", label: "Day 17", event: "Marketing Son disabled — 30GB syslog from chmod -R loop. Command Hub scoped." },
   { day: 18, date: "2026-03-01", label: "Day 18", event: "OpenClaw upgraded to v2026.2.26. Gateway isolation spec. MyType V2 source recovered." },
   { day: 19, date: "2026-03-02", label: "Day 19", event: "🚀 Ops Bridge live (172.17.0.1:8100). CardStar V2 first public deploy on Vercel. Jira + NetSuite sandbox wired." },
-  { day: 20, date: "2026-03-03", label: "Day 20", event: "🚀 ArtPlatform foundation built overnight (~35K lines). ux-son registered. Capability amnesia rule created." },
+  { day: 20, date: "2026-03-03", label: "Day 20", event: "⚠️ ArtPlatform waste: 35K lines of gibberish built overnight without reading Mike's source material. ux-son registered. Capability amnesia rule created." },
   { day: 21, date: "2026-03-04", label: "Day 21", event: "ArtPlatform phases 27-32 merged (35 total). Vercel crash root-caused (ThemeProvider). Git permissions fixed." },
   { day: 22, date: "2026-03-05", label: "Day 22", event: "Agentbus reality check — silent routing failure found. Bulletin board deployed. Finance Son scoped. MEMORY-HIERARCHY.md." },
   { day: 23, date: "2026-03-06", label: "Day 23", event: "🚀 Budget system live. GOVERNANCE.md. GitHub org migrated: Foolsold → Oldus-AI. workspace-sync.sh. contextTokens bug fixed." },
@@ -1418,11 +1418,10 @@ export default function BuildPlanDashboard() {
           }}
         >
           {[
-            { label: "Total Spend", value: "~$2,417", sub: "Day 0-25", color: "#7C3AED" },
+            { label: "Total Spend", value: "~$2,417", sub: "Day 0-27 (£1,850 ex VAT)", color: "#7C3AED" },
             { label: "Waste Eliminated", value: "~50%", sub: "vs baseline", color: "#059669" },
             { label: "Integrations", value: "27", sub: "all live", color: "#0891B2" },
             { label: "CardStar Templates", value: "62", sub: "15 sports", color: "#D97706" },
-            { label: "ArtPlatform", value: "35K+", sub: "lines of code", color: "#7C3AED" },
           ].map((stat) => (
             <div
               key={stat.label}
