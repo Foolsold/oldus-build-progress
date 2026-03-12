@@ -172,7 +172,7 @@ const phases = [
   },
   {
     id: "creds",
-    title: "Credentials & Integrations (27 total)",
+    title: "Credentials & Integrations (28 total)",
     status: "complete",
     goldenSnapshot: "27 integrations live ✅",
     items: [
@@ -1420,7 +1420,7 @@ export default function BuildPlanDashboard() {
           {[
             { label: "Total Spend", value: "~$2,417", sub: "Day 0-27 (£1,850 ex VAT)", color: "#7C3AED" },
             { label: "Waste Eliminated", value: "~50%", sub: "vs baseline", color: "#059669" },
-            { label: "Integrations", value: "27", sub: "all live", color: "#0891B2" },
+            { label: "Integrations", value: "28", sub: "all live", color: "#0891B2" },
             { label: "CardStar Templates", value: "62", sub: "15 sports", color: "#D97706" },
           ].map((stat) => (
             <div
