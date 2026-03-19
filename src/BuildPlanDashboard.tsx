@@ -972,7 +972,15 @@ const milestones = [
   { day: 25, date: "2026-03-08", label: "Day 25", event: "⚠️ Amnesia crisis: 1.6MB session caused 10-min timeout. Session watchdog + 4× daily rotation deployed. System prompt: 46K → 14K tokens." },
   { day: 26, date: "2026-03-09", label: "Day 26", event: "🚀 Autonomous PR pipeline shipped (auto-merge.yml). NetSuite M2M OAuth complete. Sons Google Drive. Repo rulesets." },
   { day: 27, date: "2026-03-10", label: "Day 27", event: "🚀 CardStar V2 complete: 6 PRs merged, 62 templates, 15 sports, player presets, club logos, social share. Live on Vercel." },
-  { day: 28, date: "2026-03-11", label: "Day 28", event: "🎯 CS all-hands demo prep: Zendesk live (2,890 tickets), merchant churn risk monitor + agent quality scorecard designed. Briefing system built (5 daily templates). CardStar UX fixes PR #27." },
+  { day: 28, date: "2026-03-11", label: "Day 28", event: "🎯 All-hands demo prep: Paperclip evaluated and deployed (orchestration, cost tracking, hard budget stops). Owen/TheNightSky intel → 6 build specs. Machine Room story rebuilt as 18 slides. Merchant churn monitor + Zendesk agent quality scorecard designed for Kate's CS team." },
+  { day: 29, date: "2026-03-12", label: "Day 29", event: "🚀 All-hands demo day. Opus 4.6 with 200K context for maximum performance. Disk cleanup: 80% → 60%. Claude Code headless mode fix (--dangerously-skip-permissions). Ortto API key integrated. Worker dispatch template created. 9-slide all-hands PowerPoint shipped." },
+  { day: 30, date: "2026-03-13", label: "Day 30", event: "⚠️ Comprehensive credential security audit: .env cleaned (30 deduplicated entries), sandbox.docker.env cleaned (24 vars). CardStar V2 Vercel pipeline fixed, lossless-claw version mismatch found. @imgly/background-removal confirmed as rembg replacement (client-side WASM, PR #39). System prompt bloat exposed: 32K chars auto-loading every turn." },
+  { day: 31, date: "2026-03-14", label: "Day 31", event: "📄 Prodigi international localisation spec produced — 13-page doc covering language tiers, URL conventions, hreflang generation, Localisation Son architecture, French pilot as Phase 2. Estimated steady-state $3–8/day." },
+  { day: 32, date: "2026-03-15", label: "Day 32", event: "🚀 Readymades Framing Engine: 5 source docs reconciled into Consolidated Spec v2.0. Critical insight: entire backend already exists in production — project is frontend + middleware only. 348+ frames in scope at launch. CardStar: Shopify headless cart wired end-to-end (create → add → checkout URL)." },
+  { day: 33, date: "2026-03-16", label: "Day 33", event: "⚙️ OpenClaw upgraded 2026.3.8 → 2026.3.13 (structural session bloat fixes). Model strings prefixed with anthropic/. Paperclip credentials injected into sandbox. Pitch deck v4 ('We are the bridge', Graduate/Specialist/Senior tiers). Golden config backup fixed (--no-verify). Semrush API key configured." },
+  { day: 34, date: "2026-03-17", label: "Day 34", event: "⚠️ Session bloat crisis: 21 guard warnings in a single day. Root cause: guard was restarting gateway but never deleting bloated session file. Guard fixed. contextTokens/reserveTokensFloor reduced 80K/40K → 30K/15K. Memory restructured: index-only MEMORY.md, subfolders for people/projects/decisions/daily. Auto-load: 47.5KB → 26KB. Disk: 77% → 54%." },
+  { day: 35, date: "2026-03-18", label: "Day 35", event: "⚠️ Session rotation speed diagnosed — 19 min from worker report to 512KB rotation. Three acute fixes: guard now deletes files, 30K context window deployed, zombie session archived. Worker output convention designed (pointers-not-content) — deferred pending observation." },
+  { day: 36, date: "2026-03-19", label: "Day 36", event: "⚙️ Default model → claude-sonnet-4-6. Ops bridge model switch now sweeps sessions.json (prevents split-brain). Readymades git worktrees (configurator, preview-3d, shopify-integration) added to AgentDock. Paperclip gateway adapter attempted — crashed server after 33s, reverted to claude_local. Azure Blob Storage credentials live for Readymades/Canvas Republic/CardStar image uploads." },
 ];
 
 const automationCrons = [
@@ -1401,11 +1409,11 @@ export default function BuildPlanDashboard() {
               fontWeight: 700,
             }}
           >
-            Day 28
+            Day 36
           </span>
         </div>
         <p style={{ fontSize: "13px", color: "#6B7280", margin: "4px 0 16px 0" }}>
-          OpenClaw v2026.2.26 · Claude Opus 4.6 · Hetzner ARM Helsinki · Updated 2026-03-11 · Born 2026-02-11
+          OpenClaw v2026.3.13 · Claude Sonnet 4.6 · Hetzner ARM Helsinki · Updated 2026-03-19 · Born 2026-02-11
         </p>
 
         {/* Stats bar */}
@@ -1509,10 +1517,10 @@ export default function BuildPlanDashboard() {
         >
           <div>
             <div style={{ fontWeight: 700, fontSize: "15px", color: "#111827" }}>
-              🗓️ Key Milestones — Day 0 → Day 28
+              🗓️ Key Milestones — Day 0 → Day 36
             </div>
             <div style={{ fontSize: "12px", color: "#6B7280", marginTop: "2px" }}>
-              {milestones.length} events · 28 days · Born 2026-02-11
+              {milestones.length} events · 36 days · Born 2026-02-11
             </div>
           </div>
           <span style={{ fontSize: "18px" }}>{showMilestones ? "▾" : "▸"}</span>
@@ -1991,7 +1999,7 @@ export default function BuildPlanDashboard() {
         }}
       >
         <div style={{ marginBottom: "4px" }}>
-          Oldus · Born 2026-02-11 · Hetzner ARM Helsinki · Day 28 of ∞ 🦞
+          Oldus · Born 2026-02-11 · Hetzner ARM Helsinki · Day 36 of ∞ 🦞
         </div>
         <div>
           Conscious omissions: watch mode, Docker Compose, separate dev/prod images, Kubernetes/Vault
